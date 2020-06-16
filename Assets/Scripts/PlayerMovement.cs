@@ -18,19 +18,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown("w")){
             rb.MovePosition(rb.position + Vector2.up * step);
-            Debug.Log("moving up");
+//            Debug.Log("moving up");
         }
         if(Input.GetKeyDown("s")){
             rb.MovePosition(rb.position+Vector2.down * step);
-            Debug.Log("moving down");
+//            Debug.Log("moving down");
         }
         if(Input.GetKeyDown("a")){
             rb.MovePosition(rb.position + Vector2.left * step);
-            Debug.Log("moving left");
+//            Debug.Log("moving left");
         }
         if(Input.GetKeyDown("d")){
             rb.MovePosition(rb.position+Vector2.right * step);
-            Debug.Log("moving right");
+//            Debug.Log("moving right");
         }
 
     }

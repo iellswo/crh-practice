@@ -161,8 +161,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
-  - {fileID: 908838131}
   - {fileID: 1167719165}
+  - {fileID: 908838131}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 908838133}
   - component: {fileID: 908838132}
   - component: {fileID: 908838134}
+  - component: {fileID: 908838135}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -280,7 +281,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 105273692}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &908838132
 TilemapRenderer:
@@ -1144,6 +1145,21 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &908838135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908838130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d655c6183fd9c41b5bdc970d077c48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  crackedFloor: {fileID: 11400000, guid: a3a25bb6339fcc74db167d753a937769, type: 2}
+  brokenFloor: {fileID: 11400000, guid: cb4c8323deccffc46bf22229eaf86fe4, type: 2}
 --- !u!1 &990504794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1206,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.95, y: 0.95}
   m_EdgeRadius: 0
 --- !u!114 &990504796
 MonoBehaviour:
@@ -1205,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8113acf95eb6e0647b00749d18ff1e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  step: 1
+  step: 3
 --- !u!50 &990504797
 Rigidbody2D:
   serializedVersion: 4
@@ -1226,7 +1242,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &990504798
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1291,7 +1307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 105273692}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5129132490338152823
 PrefabInstance:
@@ -1303,12 +1319,12 @@ PrefabInstance:
     - target: {fileID: 5129132491354720886, guid: 4b20029ee36019f41954c73de82fbf0c,
         type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 5129132491354720886, guid: 4b20029ee36019f41954c73de82fbf0c,
         type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 5129132491354720886, guid: 4b20029ee36019f41954c73de82fbf0c,
         type: 3}
@@ -1368,7 +1384,7 @@ PrefabInstance:
     - target: {fileID: 5129132491354721161, guid: 4b20029ee36019f41954c73de82fbf0c,
         type: 3}
       propertyPath: step
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5129132491354721162, guid: 4b20029ee36019f41954c73de82fbf0c,
         type: 3}
@@ -1408,7 +1424,7 @@ PrefabInstance:
     - target: {fileID: 5129132491354721162, guid: 4b20029ee36019f41954c73de82fbf0c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5129132491354721162, guid: 4b20029ee36019f41954c73de82fbf0c,
         type: 3}
