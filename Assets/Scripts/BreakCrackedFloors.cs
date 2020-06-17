@@ -8,24 +8,27 @@ public class BreakCrackedFloors : MonoBehaviour
 	public GameObject player;
 	public TileBase crackedFloor;
 	public TileBase brokenFloor;
-	
-	private Tilemap tileMap;
+	public Tilemap tileMap;
+
     private TileBase oldTile;
-	private Vector3 oldLocation;
+	private Vector3Int oldLocation;
+	private GridLayout grid;
 	// Start is called before the first frame update
     void Start()
     {
-		tileMap = GetComponent<Tilemap>();
-		oldLocation = player.transform.position;
-        oldTile = tileMap.GetTile(Vector3Int.FloorToInt(oldLocation));
+		grid = GetComponent<GridLayout>();
+		oldLocation = grid.WorldToCell(player.transform.position);
+        oldTile = tileMap.GetTile(oldLocation);
     }
 
     // Update is called once per frame
     void Update()
     {
-		var newLocation = player.transform.position;
-		var newTile = tileMap.GetTile(Vector3Int.FloorToInt(newLocation));
-
+		var newLocation = grid.WorldToCell(player.transform.position);
+		var newTile = tileMap.GetTile(newLocation);
+		
+	
+		
         if(oldLocation == newLocation){
 			Debug.Log("stayed at" + oldLocation);
 			//no movement, exit early
@@ -35,13 +38,11 @@ public class BreakCrackedFloors : MonoBehaviour
 
 			if(oldTile == crackedFloor){
 				Debug.Log("CRACK!");
-				tileMap.SetTile(Vector3Int.FloorToInt(oldLocation), brokenFloor);
+				tileMap.SetTile(oldLocation, brokenFloor);
 			}
-		
 			//update records of where we are
-			oldLocation = player.transform.position;
+			oldLocation = newLocation;
 			oldTile = newTile;
-
 		}
     }
 }
