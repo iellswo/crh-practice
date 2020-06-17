@@ -1,50 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int step;
     public Sprite upSprite;
     public Sprite downSprite;
     public Sprite sideSprite;
+    public Tilemap tileMap;
+    public List<TileBase> walkableTiles;
+    
+    private Transform playerTransform;
     private SpriteRenderer playerSprite;
-    private Rigidbody2D rb;
 
     void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        playerTransform = GetComponent<Transform>();
         // currentTile = room
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 movement = new Vector3(0,0,0);
         if(Input.GetKeyDown("w"))
         {
             playerSprite.sprite = upSprite;
             playerSprite.flipX = false;
-            rb.MovePosition(rb.position + Vector2.up * step);
+            movement = Vector3.up;
 //            Debug.Log("moving up");
         }
         if(Input.GetKeyDown("s")){
             playerSprite.sprite = downSprite;
             playerSprite.flipX = false;
-            rb.MovePosition(rb.position+Vector2.down * step);
+            movement = Vector3.down;
 //            Debug.Log("moving down");
         }
         if(Input.GetKeyDown("a")){
             playerSprite.sprite = sideSprite;
             playerSprite.flipX = true;
-            rb.MovePosition(rb.position + Vector2.left * step);
+            movement = Vector3.left;
 //            Debug.Log("moving left");
         }
         if(Input.GetKeyDown("d")){
             playerSprite.sprite = sideSprite;
             playerSprite.flipX = false;
-            rb.MovePosition(rb.position+Vector2.right * step);
+            movement = Vector3.right;
 //            Debug.Log("moving right");
+        }
+
+        TileBase newTile = tileMap.GetTile(tileMap.layoutGrid.WorldToCell(playerTransform.position + movement));
+        if (walkableTiles.Exists(tile => tile == newTile))
+        {
+            playerTransform.position += movement;
         }
 
     }

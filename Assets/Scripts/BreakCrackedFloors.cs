@@ -8,8 +8,8 @@ public class BreakCrackedFloors : MonoBehaviour
 	public GameObject player;
 	public TileBase crackedFloor;
 	public TileBase brokenFloor;
-	public Tilemap tileMap;
 
+	private Tilemap tileMap;
     private TileBase oldTile;
 	private Vector3Int oldLocation;
 	private GridLayout grid;
@@ -17,6 +17,7 @@ public class BreakCrackedFloors : MonoBehaviour
     void Start()
     {
 		grid = GetComponent<GridLayout>();
+		tileMap = GetComponent<Tilemap>();
 		oldLocation = grid.WorldToCell(player.transform.position);
         oldTile = tileMap.GetTile(oldLocation);
     }
@@ -30,12 +31,9 @@ public class BreakCrackedFloors : MonoBehaviour
 	
 		
         if(oldLocation == newLocation){
-			Debug.Log("stayed at" + oldLocation);
 			//no movement, exit early
 			//in java iirc I'd just break; here but that's not making unity happy, have an else.
 		} else {
-			Debug.Log("move to" + newLocation);
-
 			if(oldTile == crackedFloor){
 				Debug.Log("CRACK!");
 				tileMap.SetTile(oldLocation, brokenFloor);
