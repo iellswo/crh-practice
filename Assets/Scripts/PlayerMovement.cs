@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int stamina;
     public Sprite upSprite;
     public Sprite downSprite;
     public Sprite sideSprite;
@@ -55,6 +57,13 @@ public class PlayerMovement : MonoBehaviour
         if (walkableTiles.Exists(tile => tile == newTile))
         {
             playerTransform.position += movement;
+            if(movement.magnitude > 0){stamina--;}
+            
+        }
+
+        if (stamina <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }
