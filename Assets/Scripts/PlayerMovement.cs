@@ -12,14 +12,17 @@ public class PlayerMovement : MonoBehaviour
     public Sprite sideSprite;
     public Tilemap tileMap;
     public List<TileBase> walkableTiles;
-    
+    public Vector3 startingLocation;
     private Transform playerTransform;
     private SpriteRenderer playerSprite;
 
     void Start()
     {
+        
         playerSprite = GetComponent<SpriteRenderer>();
         playerTransform = GetComponent<Transform>();
+        playerTransform.position = CenterOnTile(Data.savedLocation);
+
         // currentTile = room
     }
 
@@ -65,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    
+    }
 
+    public Vector3 CenterOnTile(Vector3 location)
+    {
+        var centeredLocation = tileMap.layoutGrid.CellToWorld(tileMap.layoutGrid.WorldToCell(location));
+        return centeredLocation + new Vector3(0.5f, 0.5f, 0f);
     }
 }
