@@ -13,16 +13,14 @@ public class PlayerMovement : MonoBehaviour
     public Tilemap tileMap;
     public List<TileBase> walkableTiles;
     public Vector3 startingLocation;
-    private Transform playerTransform;
     private SpriteRenderer playerSprite;
 
     void Start()
     {
-        
+        stamina = Data.staminaMax;
         playerSprite = GetComponent<SpriteRenderer>();
-        playerTransform = GetComponent<Transform>();
-        playerTransform.position = CenterOnTile(Data.savedLocation);
-
+        transform.position = tileMap.GetComponent<CenterOnTile>().Center(Data.savedLocation);
+        
         // currentTile = room
     }
 
@@ -56,24 +54,44 @@ public class PlayerMovement : MonoBehaviour
 //            Debug.Log("moving right");
         }
 
-        TileBase newTile = tileMap.GetTile(tileMap.layoutGrid.WorldToCell(playerTransform.position + movement));
+        TileBase newTile = tileMap.GetTile(tileMap.layoutGrid.WorldToCell(transform.position + movement));
         if (walkableTiles.Exists(tile => tile == newTile))
         {
-            playerTransform.position += movement;
-            if(movement.magnitude > 0){stamina--;}
-            
+            var aDoor = Data.doors.Find(door => door.transform.position == transform.position + movement);
+            var aWeb = Data.cobwebs.Find(web => web.transform.position == transform.position + movement);
+
+            if (aDoor != null)
+            {
+                aDoor.GetComponent<Door>().Open();
+            } else if (aWeb != null)
+            {
+                aWeb.GetComponent<Cobweb>().Remove();
+                stamina--;
+            }
+            else
+            {
+                
+                transform.position += movement;
+                //not sure if we'll need to recenter after each step but here's the line if needed
+                //playerTransform.position = tileMap.GetComponent<CenterOnTile>().Center(playerTransform.position);
+                if (movement.magnitude > 0)
+                {
+                    stamina--;
+                    Data.keys.Find(key => key.transform.position == transform.position)?.GetComponent<Key>().Pickup();
+                    Data.saves.Find(save => save.transform.position == transform.position)?.GetComponent<SavePoint>().Save();
+                }
+                
+            }
         }
 
         if (stamina <= 0)
         {
+            Data.cobwebs = new List<GameObject>();
+            Data.doors = new List<GameObject>();
+            Data.keys = new List<GameObject>();
+            Data.saves = new List<GameObject>();
+            Data.keyCount = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    
-    }
-
-    public Vector3 CenterOnTile(Vector3 location)
-    {
-        var centeredLocation = tileMap.layoutGrid.CellToWorld(tileMap.layoutGrid.WorldToCell(location));
-        return centeredLocation + new Vector3(0.5f, 0.5f, 0f);
     }
 }
