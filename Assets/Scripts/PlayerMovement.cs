@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             var aDoor = Data.doors.Find(door => door.transform.position == transform.position + movement);
             var aWeb = Data.cobwebs.Find(web => web.transform.position == transform.position + movement);
-
+            var aLever = Data.levers.Find(lever => lever.transform.position == transform.position + movement);
             if (aDoor != null)
             {
                 aDoor.GetComponent<Door>().Open();
@@ -67,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 aWeb.GetComponent<Cobweb>().Remove();
                 stamina--;
+            } else if (aLever != null)
+            {
+                aLever.GetComponent<Lever>().Activate();
             }
             else
             {
