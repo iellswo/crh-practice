@@ -9,7 +9,11 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!Data.doors.Exists(door => door.GetComponent<Transform>().position == GetComponent<Transform>().position))
+        
+        if (Data.openDoors.Exists(door => door == transform.position))
+        {
+            Destroy(gameObject);
+        } else if (!Data.doors.Exists(door => door.transform.position == transform.position))
         {
             Data.doors.Add(gameObject);
         }
@@ -26,6 +30,7 @@ public class Door : MonoBehaviour
         if (Data.keyCount > 0)
         {
             Data.keyCount--;
+            Data.openDoors.Add(transform.position);
             Data.doors.Remove(gameObject);
             Destroy(gameObject);
         }
