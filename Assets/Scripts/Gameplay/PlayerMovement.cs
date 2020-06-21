@@ -82,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
                     stamina--;
                     Data.keys.Find(key => key.transform.position == transform.position)?.GetComponent<Key>().Pickup();
                     Data.saves.Find(save => save.transform.position == transform.position)?.GetComponent<SavePoint>().Save();
+                    Data.wins.Find(win => win.transform.position == transform.position)?.GetComponent<WinScript>()
+                        .Win();
                 }
                 
             }
