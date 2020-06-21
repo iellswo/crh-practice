@@ -26,6 +26,7 @@ public class WinScript : MonoBehaviour
 
     public void Win()
     {
+        AudioCommand.SilenceBGM();
         SceneManager.LoadScene("Scenes/Win");
     }
 }

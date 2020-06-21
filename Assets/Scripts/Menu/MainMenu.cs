@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Menu()
     {
+        AudioCommand.SilenceBGM();
         SceneManager.LoadScene("Scenes/Title");
     }
 }
