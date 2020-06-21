@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: CornerWallAsset
+  m_Name: EvenCornerWallAsset
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: c1729a9351a29bc46afe6a7a2aa28ab9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff5c9f8ca254da9408eac8cb4bfa660d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
