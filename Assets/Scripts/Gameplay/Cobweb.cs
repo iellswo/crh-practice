@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Cobweb : MonoBehaviour
 {
+    public Tilemap tileMap;
+
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = tileMap.GetComponent<CenterOnTile>().Center(transform.position);
         if (!Data.cobwebs.Exists(web => web.GetComponent<Transform>().position == GetComponent<Transform>().position))
         {
             Data.cobwebs.Add(gameObject);

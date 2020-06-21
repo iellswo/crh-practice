@@ -13,9 +13,8 @@ public class Key : MonoBehaviour
     void Start()
     {
         
-        center = tileMap.GetComponent<CenterOnTile>();
-        thisSpot = center.Center(transform.position);
-        if (!Data.keys.Exists(key => key.GetComponent<Transform>().position == GetComponent<Transform>().position))
+        thisSpot = tileMap.GetComponent<CenterOnTile>().Center(transform.position);
+        if (!Data.keys.Exists(key => key.transform.position == transform.position))
         {
             Data.keys.Add(gameObject);
         }

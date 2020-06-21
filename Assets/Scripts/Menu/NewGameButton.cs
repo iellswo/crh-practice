@@ -19,7 +19,7 @@ public class NewGameButton : MonoBehaviour
 
     public void NewGame()
     {
-        Data.savedLocation = new Vector3(-1.5f, 0.5f, 0);
+        Data.savedLocation = new Vector3(0, 0, 0);
         Data.staminaMax = 10;
         Data.keyCount = 0;
         Data.wins = new List<GameObject>();

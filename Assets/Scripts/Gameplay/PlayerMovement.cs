@@ -19,7 +19,14 @@ public class PlayerMovement : MonoBehaviour
     {
         stamina = Data.staminaMax;
         playerSprite = GetComponent<SpriteRenderer>();
-        transform.position = tileMap.GetComponent<CenterOnTile>().Center(Data.savedLocation);
+        if (Data.savedLocation != new Vector3(0, 0, 0))
+        {
+            transform.position = tileMap.GetComponent<CenterOnTile>().Center(Data.savedLocation);
+        }
+        else
+        {
+            transform.position = tileMap.GetComponent<CenterOnTile>().Center(transform.position);
+        }
         
         // currentTile = room
     }

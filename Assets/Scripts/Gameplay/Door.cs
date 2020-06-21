@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 
 
 public class Door : MonoBehaviour
 {
+    public Tilemap tileMap;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = tileMap.GetComponent<CenterOnTile>().Center(transform.position);
+
         if (Data.openDoors.Exists(door => door == transform.position))
         {
             Destroy(gameObject);
