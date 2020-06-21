@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
 {
     public Tilemap tileMap;
 
+    public AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class Door : MonoBehaviour
     {
         if (Data.keyCount > 0)
         {
+            source.Play();
             Data.keyCount--;
             Data.openDoors.Add(transform.position);
             Data.doors.Remove(gameObject);

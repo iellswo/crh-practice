@@ -7,6 +7,7 @@ public class Cobweb : MonoBehaviour
 {
     public Tilemap tileMap;
 
+    public AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class Cobweb : MonoBehaviour
 
     public void Remove()
     {
+        source.Play();
         Data.cobwebs.Remove(gameObject);
         Destroy(gameObject);
     }

@@ -34,8 +34,9 @@ public class BreakCrackedFloors : MonoBehaviour
 			//no movement, exit early
 			//in java iirc I'd just break; here but that's not making unity happy, have an else.
 		} else {
-			if(oldTile == crackedFloor){
-				Debug.Log("CRACK!");
+			if(oldTile == crackedFloor)
+			{
+				GetComponent<AudioSource>().Play();
 				tileMap.SetTile(oldLocation, brokenFloor);
 			}
 			//update records of where we are

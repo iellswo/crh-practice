@@ -26,5 +26,6 @@ public class SavePoint : MonoBehaviour
         player.GetComponent<PlayerMovement>().stamina = staminaRefresh;
         Data.staminaMax = staminaRefresh;
         Data.savedLocation = transform.position;
+        GetComponent<AudioSource>().Play();
     }
 }

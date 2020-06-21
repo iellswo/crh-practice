@@ -26,6 +26,7 @@ public class Lever : MonoBehaviour
 
     public void Activate()
     {
+        GetComponent<AudioSource>().Play();
         gizmos.ForEach(gizmo => gizmo.Activate());
         GetComponent<SpriteRenderer>().flipX ^= true;
     }
