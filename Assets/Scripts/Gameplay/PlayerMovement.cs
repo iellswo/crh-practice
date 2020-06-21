@@ -91,14 +91,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (stamina <= 0)
         {
-            Data.cobwebs = new List<GameObject>();
-            Data.doors = new List<GameObject>();
-            Data.keys = new List<GameObject>();
-            Data.saves = new List<GameObject>();
-            Data.wins = new List<GameObject>();
-            Data.levers = new List<GameObject>();
-            Data.keyCount = 0;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Blackout();
         }
+    }
+
+    public void Blackout()
+    {
+        Data.cobwebs = new List<GameObject>();
+        Data.doors = new List<GameObject>();
+        Data.keys = new List<GameObject>();
+        Data.saves = new List<GameObject>();
+        Data.wins = new List<GameObject>();
+        Data.levers = new List<GameObject>();
+        Data.keyCount = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
